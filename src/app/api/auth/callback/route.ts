@@ -5,6 +5,7 @@ import axios from 'axios';
 const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 const REDIRECT_URI = process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI;
+const BASE_REDIRECT_URI = process.env.NEXT_PUBLIC_BASE_REDIRECT_URI;
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -20,12 +21,8 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(new URL('/#error=state_mismatch', request.url));
   }
 
-  // Get the origin of the current request (e.g., http://127.0.0.1:3000)
-  const requestUrl = new URL(request.url);
-  const origin = requestUrl.origin;
-
   // ⭐️ Corregido: Create the redirection response with the correct origin
-  const response = NextResponse.redirect(new URL('/home', 'http://127.0.0.1:3000'));
+  const response = NextResponse.redirect(new URL('/home', BASE_REDIRECT_URI));
   response.cookies.delete('spotify_auth_state');
 
   const authOptions = {

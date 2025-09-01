@@ -133,7 +133,7 @@ export default function HomePageClient({ user, recentlyPlayed, likedTracks, acce
             <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
               <Play className="w-4 h-4 text-black fill-current" />
             </div>
-            <span className="text-xl font-bold text-green-400">Spotify</span>
+            <span className="text-xl font-bold text-green-400">My Spotify</span>
           </div>
         </div>
 
@@ -194,7 +194,6 @@ export default function HomePageClient({ user, recentlyPlayed, likedTracks, acce
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-w-0">
-        {/* Header */}
         {/* Header */}
 <div className="h-16 bg-gray-950 border-b border-gray-800 flex items-center justify-between px-4 md:px-6">
   <div className="flex items-center space-x-4 flex-1">
