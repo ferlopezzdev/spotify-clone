@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --hostname 127.0.0.1",
-    "build": "CI=false next build",
+    "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint"
   },

@@ -17,8 +17,18 @@ declare global {
 }
 
 interface SpotifyPlayer {
-  addListener: (event: string, callback: (data: any) => void) => void;
-  removeListener: (event: string, callback?: (data: any) => void) => void;
+  addListener: {
+    (event: 'ready', callback: (data: { device_id: string }) => void): void;
+    (event: 'not_ready', callback: (data: { device_id: string }) => void): void;
+    (event: 'player_state_changed', callback: (state: WebPlaybackState | null) => void): void;
+    (event: 'initialization_error', callback: (data: { message: string }) => void): void;
+    (event: 'authentication_error', callback: (data: { message: string }) => void): void;
+    (event: 'account_error', callback: (data: { message: string }) => void): void;
+    (event: 'playback_error', callback: (data: { message: string }) => void): void;
+  };
+  removeListener: {
+    (event: string, callback?: (data: unknown) => void): void;
+  };
   connect: () => Promise<boolean>;
   disconnect: () => void;
   getCurrentState: () => Promise<WebPlaybackState | null>;
@@ -35,7 +45,7 @@ interface SpotifyPlayer {
 interface WebPlaybackState {
   context: {
     uri: string;
-    metadata: Record<string, any>;
+    metadata: Record<string, string | number | boolean | object | null>;
   };
   disallows: {
     pausing: boolean;
@@ -96,8 +106,8 @@ export function useSpotifyPlayer(accessToken: string): UseSpotifyPlayerReturn {
   const [position, setPosition] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolumeState] = useState(0.5);
-  
-  const intervalRef = useRef<NodeJS.Timeout>(null);
+
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (!accessToken) return;
@@ -114,7 +124,7 @@ export function useSpotifyPlayer(accessToken: string): UseSpotifyPlayerReturn {
       const spotifyPlayer = new window.Spotify.Player({
         name: 'Mi Reproductor Web',
         getOAuthToken: (cb) => cb(accessToken),
-        volume: 0.5
+        volume: 0.5,
       });
 
       // Event listeners
@@ -252,6 +262,6 @@ export function useSpotifyPlayer(accessToken: string): UseSpotifyPlayerReturn {
     nextTrack,
     previousTrack,
     seek,
-    setVolume
+    setVolume,
   };
 }
