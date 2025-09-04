@@ -22,9 +22,7 @@ interface LikedTrackItem {
   track: Track;
 }
 
-interface SearchTrackItem extends Track {}
-
-type TrackItem = RecentlyPlayedItem | LikedTrackItem | SearchTrackItem;
+type TrackItem = RecentlyPlayedItem | LikedTrackItem;
 
 interface TrackListProps {
   title: string;
@@ -50,7 +48,7 @@ export default function TrackList({
     if ('track' in item) {
       return item.track;
     }
-    return item as SearchTrackItem;
+    return item;
   };
 
   const displayItems = items.slice(0, maxItems);

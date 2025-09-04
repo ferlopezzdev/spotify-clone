@@ -26,9 +26,8 @@ interface LikedTrackItem {
   track: Track;
 }
 
-interface SearchTrackItem extends Track {}
 
-type TrackItem = RecentlyPlayedItem | LikedTrackItem | SearchTrackItem;
+type TrackItem = RecentlyPlayedItem | LikedTrackItem;
 
 interface TrackGridProps {
   title: string;
@@ -56,7 +55,7 @@ export default function TrackGrid({
     if ('track' in item) {
       return item.track;
     }
-    return item as SearchTrackItem;
+    return item;
   };
 
   const displayItems = items.slice(0, maxItems);
