@@ -1,9 +1,9 @@
-'use server';
+"use server";
 
-import { cookies } from 'next/headers';
-import axios, { isAxiosError } from 'axios';
-import type { SpotifyApiError } from '@/types/api-response/me.types';
-import type { SpotifyTrack } from './get-recently-played.action';
+import { cookies } from "next/headers";
+import axios, { isAxiosError } from "axios";
+import type { SpotifyApiError } from "@/types/api-response/me.types";
+import type { SpotifyTrack } from "./get-recently-played.action";
 
 export interface SpotifySavedTrack {
   added_at: string;
@@ -20,12 +20,15 @@ export interface SpotifySavedTracks {
   total: number;
 }
 
-export async function getLikedTracks(): Promise<{ tracks?: SpotifySavedTracks; error?: string }> {
+export async function getLikedTracks(): Promise<{
+  tracks?: SpotifySavedTracks;
+  error?: string;
+}> {
   const cookieStore = await cookies();
-  const accessToken = cookieStore.get('spotify_access_token')?.value;
+  const accessToken = cookieStore.get("spotify_access_token")?.value;
 
   if (!accessToken) {
-    return { error: 'No access token found.' };
+    return { error: "No access token found." };
   }
 
   try {
@@ -33,7 +36,7 @@ export async function getLikedTracks(): Promise<{ tracks?: SpotifySavedTracks; e
       `https://api.spotify.com/v1/me/tracks?limit=50`,
       {
         headers: {
-          'Authorization': `Bearer ${accessToken}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     );
@@ -43,6 +46,6 @@ export async function getLikedTracks(): Promise<{ tracks?: SpotifySavedTracks; e
       const apiError: SpotifyApiError = error.response.data;
       return { error: `API Error: ${apiError.error.message}` };
     }
-    return { error: 'Failed to fetch liked tracks.' };
+    return { error: "Failed to fetch liked tracks." };
   }
 }

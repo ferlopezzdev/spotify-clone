@@ -1,16 +1,16 @@
-// app/dashboard/page.tsx
 import { getUserProfile } from '../actions/get-user-profile.action';
 import { getRecentlyPlayed } from '../actions/get-recently-played.action';
 import { getCurrentlyPlaying } from '../actions/get-currently-played.action';
-import { getLikedTracks } from '../actions/get-liked-track.action'; // Importa la nueva acción
+import { getLikedTracks } from '../actions/get-liked-track.action';
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
+
 import HomePageClient from './page-client';
-import type { SpotifySavedTracks } from '../actions/get-liked-track.action'; // Importa el tipo
+
+import type { SpotifySavedTracks } from '../actions/get-liked-track.action';
 
 export default async function HomePage() {
   try {
-    // ... (Tu código actual para obtener el token y el perfil de usuario) ...
     const cookieStore = await cookies();
     const accessToken = cookieStore.get('spotify_access_token')?.value;
     
@@ -30,13 +30,13 @@ export default async function HomePage() {
     const [recentlyPlayedResult, currentlyPlayingResult, likedTracksResult] = await Promise.allSettled([
       getRecentlyPlayed(),
       getCurrentlyPlaying(),
-      getLikedTracks(), // ⭐️ Agrega la nueva llamada a la API
+      getLikedTracks(),
     ]);
 
     // Extraer datos si no hay errores
     let recentlyPlayed = undefined;
     let currentlyPlaying = undefined;
-    let likedTracks: SpotifySavedTracks | undefined = undefined; // ⭐️ Define la nueva variable
+    let likedTracks: SpotifySavedTracks | undefined = undefined;
 
     if (recentlyPlayedResult.status === 'fulfilled' && recentlyPlayedResult.value.tracks) {
       recentlyPlayed = recentlyPlayedResult.value.tracks;
