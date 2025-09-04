@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useMusicPlayer } from '@/hooks/use-music-player';
 import { useNavigationStore } from '@/stores/navigation-store';
 
@@ -11,12 +12,12 @@ import TrackGrid, { TrackItem } from '@/components/tracks-grid';
 import BottomPlayer from '@/components/bottom-player';
 import TrackList from '@/components/tracks-list';
 
+import { Button } from '@/components/ui/button';
+import { ArrowBigLeftDash } from 'lucide-react';
+
 import type { SpotifyRecentlyPlayed } from '@/app/actions/get-recently-played.action';
 import type { SpotifySavedTracks } from '@/app/actions/get-liked-track.action';
 import type { SpotifyCurrentlyPlaying } from '@/app/actions/get-currently-played.action';
-import { Button } from '@/components/ui/button';
-import { ArrowBigLeftDash, Backpack } from 'lucide-react';
-import { useEffect } from 'react';
 interface Props {
   user: SpotifyUserProfile;
   recentlyPlayed?: SpotifyRecentlyPlayed;

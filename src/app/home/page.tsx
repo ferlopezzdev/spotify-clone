@@ -26,14 +26,12 @@ export default async function HomePage() {
       redirect('/');
     }
 
-    // Obtener datos adicionales en paralelo, incluyendo las canciones que le gustan
     const [recentlyPlayedResult, currentlyPlayingResult, likedTracksResult] = await Promise.allSettled([
       getRecentlyPlayed(),
       getCurrentlyPlaying(),
       getLikedTracks(),
     ]);
 
-    // Extraer datos si no hay errores
     let recentlyPlayed = undefined;
     let currentlyPlaying = undefined;
     let likedTracks: SpotifySavedTracks | undefined = undefined;

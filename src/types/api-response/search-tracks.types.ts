@@ -1,11 +1,9 @@
-// Interfaz para la imagen de un álbum
 interface SpotifyImage {
   height: number;
   url: string;
   width: number;
 }
 
-// Interfaz para el artista
 interface SpotifyArtist {
   external_urls: {
     spotify: string;
@@ -17,7 +15,6 @@ interface SpotifyArtist {
   uri: string;
 }
 
-// Interfaz para el álbum
 interface SpotifyAlbum {
   album_type: string;
   artists: SpotifyArtist[];
@@ -35,7 +32,6 @@ interface SpotifyAlbum {
   uri: string;
 }
 
-// Interfaz para la canción (track)
 export interface SpotifyTrack {
   album: SpotifyAlbum;
   artists: SpotifyArtist[];
@@ -57,7 +53,6 @@ export interface SpotifyTrack {
   uri: string;
 }
 
-// Interfaz para la respuesta completa de la API de búsqueda de tracks
 export interface SpotifySearchTracksResponse {
   tracks: {
     href: string;

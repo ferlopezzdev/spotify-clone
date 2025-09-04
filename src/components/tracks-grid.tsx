@@ -1,11 +1,9 @@
-// components/tracks/TrackGrid.tsx
 'use client';
 
 import { Button } from '@/components/ui/button';
 import { Routes, useNavigationStore } from '@/stores/navigation-store';
 import { Play } from 'lucide-react';
 
-// Interfaz genérica para cualquier track
 interface Track {
   id: string;
   name: string;
@@ -17,7 +15,6 @@ interface Track {
   };
 }
 
-// Tipos específicos para diferentes fuentes
 interface RecentlyPlayedItem {
   track: Track;
 }

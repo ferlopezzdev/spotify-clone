@@ -10,7 +10,7 @@ export interface SpotifyUserProfile {
     spotify: string;
   };
   followers: {
-    href: string | null; // El href puede ser null
+    href: string | null;
     total: number;
   };
   href: string;

@@ -7,66 +7,23 @@ import { AlertTriangle, Play, Heart, ListMusic, Radio } from 'lucide-react';
 export default function HomePage() {
   return (
     <div className="h-screen bg-gradient-to-br from-black  via-slate-900 to-emerald-900 relative overflow-hidden">
-      {/* Enhanced Background decorations */}
       <div className="absolute inset-0">
-        {/* Main organic floating lights */}
+
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-500/15 rounded-full blur-3xl animate-[gentledrift_12s_ease-in-out_infinite]"></div>
         <div className="absolute bottom-1/4 right-1/4 w-[32rem] h-[32rem] bg-purple-500/12 rounded-full blur-3xl animate-[slowfloat_16s_ease-in-out_infinite] opacity-80"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-pink-500/8 rounded-full blur-3xl animate-[softdrift_14s_ease-in-out_infinite]"></div>
         
-        {/* Subtle wandering lights */}
         <div className="absolute top-10 right-10 w-32 h-32 bg-cyan-400/10 rounded-full blur-2xl animate-[smoothglide_18s_ease-in-out_infinite]"></div>
         <div className="absolute bottom-20 left-10 w-40 h-40 bg-yellow-400/6 rounded-full blur-2xl animate-[gentlewander_20s_ease-in-out_infinite]"></div>
         
-        {/* Breathing ambient layers */}
         <div className="absolute inset-0 bg-gradient-to-tr from-green-500/3 via-transparent to-purple-500/3 animate-[breathe_9s_ease-in-out_infinite]"></div>
         <div className="absolute inset-0 bg-gradient-to-bl from-transparent via-pink-500/2 to-transparent animate-[breathe_11s_ease-in-out_infinite]"></div>
         
-        {/* Soft noise texture */}
         <div className="absolute inset-0 bg-black/10 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.05)_100%)] opacity-30"></div>
       </div>
-      
-      {/* Custom natural animations */}
-      <style jsx>{`
-        @keyframes gentledrift {
-          0%, 100% { transform: translateY(0px) translateX(0px); }
-          25% { transform: translateY(-8px) translateX(3px); }
-          50% { transform: translateY(2px) translateX(-5px); }
-          75% { transform: translateY(-3px) translateX(2px); }
-        }
-        
-        @keyframes slowfloat {
-          0%, 100% { transform: translateY(0px) translateX(0px); }
-          33% { transform: translateY(-6px) translateX(4px); }
-          66% { transform: translateY(3px) translateX(-6px); }
-        }
-        
-        @keyframes softdrift {
-          0%, 100% { transform: translate(-50%, -50%) translateY(0px) translateX(0px); }
-          50% { transform: translate(-50%, -50%) translateY(-4px) translateX(3px); }
-        }
-        
-        @keyframes smoothglide {
-          0%, 100% { transform: translateY(0px) translateX(0px); }
-          25% { transform: translateY(-5px) translateX(8px); }
-          50% { transform: translateY(-2px) translateX(-3px); }
-          75% { transform: translateY(3px) translateX(5px); }
-        }
-        
-        @keyframes gentlewander {
-          0%, 100% { transform: translateY(0px) translateX(0px); }
-          50% { transform: translateY(-7px) translateX(4px); }
-        }
-        
-        @keyframes breathe {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 0.5; }
-        }
-      `}</style>
-      
+     
       <main className="relative flex h-screen items-center justify-center p-4">
         <div className="w-full max-w-md space-y-6">
-          {/* Logo Section */}
           <div className="text-center mb-8">
             <div className="flex items-center justify-center mb-4">
               <div className="w-16 h-16 bg-gradient-to-br from-green-400 via-green-500 to-emerald-600 rounded-full flex items-center justify-center shadow-2xl shadow-green-500/40">
@@ -87,12 +44,10 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Login Card */}
           <Card className="bg-black/70 border-gray-600/30 backdrop-blur-2xl shadow-2xl shadow-purple-500/10 ring-1 ring-white/5">
             <CardContent className="p-6 space-y-4">
               <LoginButton />
               
-              {/* Important Notice */}
               <Alert className="bg-gradient-to-r from-gray-800/60 to-gray-900/60 border-gray-600/50 backdrop-blur-sm">
                 <AlertTriangle className="h-4 w-4 text-white drop-shadow-sm"  color='orange'/>
                 <AlertDescription className="text-gray-200 text-sm">
@@ -103,7 +58,6 @@ export default function HomePage() {
                 </AlertDescription>
               </Alert>
 
-              {/* What you get - Enhanced */}
               <div className="grid grid-cols-2 gap-3 text-xs text-gray-200">
                 <div className="flex items-center gap-2 p-2 rounded-lg bg-gradient-to-r from-gray-800/30 to-gray-900/20 backdrop-blur-sm">
                   <ListMusic className="w-3 h-3 text-green-400 flex-shrink-0 drop-shadow-sm" />

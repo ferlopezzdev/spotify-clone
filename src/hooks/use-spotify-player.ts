@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 
-// Tipos para el Web Playback SDK
 declare global {
   interface Window {
     onSpotifyWebPlaybackSDKReady: () => void;
@@ -81,7 +80,6 @@ interface WebPlaybackState {
     previous_tracks: SpotifyTrack[];
   };
 }
-
 interface SpotifyTrack {
   id: string;
   name: string;
@@ -127,7 +125,6 @@ export function useSpotifyPlayer(accessToken: string): UseSpotifyPlayerReturn {
   useEffect(() => {
     if (!accessToken) return;
 
-    // Cargar el SDK si no está cargado
     if (!window.Spotify) {
       const script = document.createElement("script");
       script.src = "https://sdk.scdn.co/spotify-player.js";
@@ -180,7 +177,6 @@ export function useSpotifyPlayer(accessToken: string): UseSpotifyPlayerReturn {
         console.error("❌ Playback Error:", message);
       });
 
-      // Conectar el player
       spotifyPlayer.connect();
       setPlayer(spotifyPlayer);
     };
@@ -195,7 +191,6 @@ export function useSpotifyPlayer(accessToken: string): UseSpotifyPlayerReturn {
     };
   }, [accessToken]);
 
-  // Actualizar posición cada segundo cuando está reproduciendo
   useEffect(() => {
     if (isPlaying && player) {
       intervalRef.current = setInterval(async () => {
@@ -217,7 +212,6 @@ export function useSpotifyPlayer(accessToken: string): UseSpotifyPlayerReturn {
     };
   }, [isPlaying, player]);
 
-  // Funciones de control
   const play = async () => {
     if (player) {
       await player.resume();

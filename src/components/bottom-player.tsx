@@ -1,4 +1,3 @@
-// components/player/BottomPlayer.tsx
 'use client';
 
 import { Button } from '@/components/ui/button';
@@ -6,11 +5,7 @@ import { Slider } from '@/components/ui/slider';
 import { 
   Play, 
   Pause, 
-  SkipForward, 
-  SkipBack, 
   Volume2, 
-  Shuffle, 
-  Repeat,
   MoreVertical 
 } from 'lucide-react';
 
@@ -60,7 +55,6 @@ export default function BottomPlayer({
     <div className="fixed bottom-0 left-0 right-0 bg-gray-950 border-t border-gray-800">
       {isReady && currentTrack ? (
         <div>
-          {/* Progress bar - Always visible */}
           <div className="px-4 py-1 bg-gray-900/50">
             <div className="flex items-center space-x-2 w-full">
               <span className="text-xs text-gray-400 w-10 text-right">
@@ -79,9 +73,7 @@ export default function BottomPlayer({
             </div>
           </div>
 
-          {/* Main player controls */}
           <div className="flex items-center h-16 md:h-20 px-4 space-x-2 md:space-x-4">
-            {/* Track Info */}
             <div className="flex items-center space-x-3 flex-1 min-w-0">
               <img
                 src={currentTrack.album.images[0]?.url}
@@ -96,7 +88,6 @@ export default function BottomPlayer({
               </div>
             </div>
 
-            {/* Play/Pause Button */}
             <div className="flex items-center">
               <Button
                 className="bg-white text-black hover:bg-gray-200 rounded-full w-10 h-10 md:w-12 md:h-12 p-0"
@@ -110,13 +101,11 @@ export default function BottomPlayer({
               </Button>
             </div>
 
-            {/* Right Controls */}
             <div className="flex items-center space-x-2 flex-1 justify-end">
               <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white md:hidden">
                 <MoreVertical className="w-4 h-4" />
               </Button>
               
-              {/* Volume control - Desktop only */}
               <div className="hidden lg:flex items-center space-x-2 w-24">
                 <Volume2 className="w-4 h-4 text-gray-400" />
                 <Slider

@@ -33,7 +33,6 @@ export default function WelcomeSection({ user }: WelcomeSectionProps) {
           {greeting}, {user.display_name}
         </h1>
         
-        {/* Quick Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <div onClick={() => setNavigation('liked')} className="bg-gray-900/50 rounded-lg p-4 mt-4 cursor-pointer hover:bg-gray-800/50 transition-colors">
             <div className="flex items-center space-x-3">
