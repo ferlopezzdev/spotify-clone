@@ -27,7 +27,7 @@ interface LikedTrackItem {
 }
 
 
-type TrackItem = RecentlyPlayedItem | LikedTrackItem;
+export type TrackItem = RecentlyPlayedItem | LikedTrackItem;
 
 interface TrackGridProps {
   title: string;

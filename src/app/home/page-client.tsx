@@ -7,7 +7,7 @@ import { SpotifyUserProfile } from '@/types/api-response/me.types';
 
 import Header from '@/components/header';
 import WelcomeSection from '@/components/welcome-section';
-import TrackGrid from '@/components/tracks-grid';
+import TrackGrid, { TrackItem } from '@/components/tracks-grid';
 import BottomPlayer from '@/components/bottom-player';
 import TrackList from '@/components/tracks-list';
 
@@ -70,15 +70,15 @@ export default function HomePageClient({
         <div className="flex-1 overflow-auto pb-24 mt-16">
           {navigation === 'home' && <WelcomeSection user={user} isPlayerReady={isReady} />}
         
-          {searchResults.length > 0 && (
-            <TrackGrid
-              title="Resultados de búsqueda"
-              items={searchResults}
-              isPlayerReady={isReady}
-              onTrackPlay={handlePlayTrack}
-              showViewAll={false}
-            />
-          )}
+       {searchResults.length > 0 && (
+        <TrackGrid
+          title="Resultados de búsqueda"
+          items={searchResults as unknown as TrackItem[]}
+          isPlayerReady={isReady}
+          onTrackPlay={handlePlayTrack}
+          showViewAll={false}
+        />
+        )}
 
         {navigation === 'recently' && recentlyPlayed?.items && recentlyPlayed.items.length > 0 && (
           <div>
