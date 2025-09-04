@@ -1,0 +1,11 @@
+{
+  "buildCommand": "next build",
+  "env": {
+    "SKIP_ESLINT_DURING_BUILD": "true"
+  },
+  "build": {
+    "env": {
+      "SKIP_ESLINT_DURING_BUILD": "true"
+    }
+  }
+}
