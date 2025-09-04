@@ -80,7 +80,7 @@ export default function HomePage() {
               </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-black text-white mb-2 tracking-tight bg-gradient-to-r from-white via-green-100 to-purple-100 bg-clip-text  drop-shadow-2xl">
-              My Spotify
+              Mini - Spotify
             </h1>
             <p className="text-lg text-gray-300 font-light bg-gradient-to-r from-gray-300 to-gray-400 bg-clip-text">
               Conecta. Escucha. Descubre.

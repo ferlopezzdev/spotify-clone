@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from "react";
 
 // Tipos para el Web Playback SDK
 declare global {
@@ -18,13 +18,28 @@ declare global {
 
 interface SpotifyPlayer {
   addListener: {
-    (event: 'ready', callback: (data: { device_id: string }) => void): void;
-    (event: 'not_ready', callback: (data: { device_id: string }) => void): void;
-    (event: 'player_state_changed', callback: (state: WebPlaybackState | null) => void): void;
-    (event: 'initialization_error', callback: (data: { message: string }) => void): void;
-    (event: 'authentication_error', callback: (data: { message: string }) => void): void;
-    (event: 'account_error', callback: (data: { message: string }) => void): void;
-    (event: 'playback_error', callback: (data: { message: string }) => void): void;
+    (event: "ready", callback: (data: { device_id: string }) => void): void;
+    (event: "not_ready", callback: (data: { device_id: string }) => void): void;
+    (
+      event: "player_state_changed",
+      callback: (state: WebPlaybackState | null) => void
+    ): void;
+    (
+      event: "initialization_error",
+      callback: (data: { message: string }) => void
+    ): void;
+    (
+      event: "authentication_error",
+      callback: (data: { message: string }) => void
+    ): void;
+    (
+      event: "account_error",
+      callback: (data: { message: string }) => void
+    ): void;
+    (
+      event: "playback_error",
+      callback: (data: { message: string }) => void
+    ): void;
   };
   removeListener: {
     (event: string, callback?: (data: unknown) => void): void;
@@ -114,55 +129,55 @@ export function useSpotifyPlayer(accessToken: string): UseSpotifyPlayerReturn {
 
     // Cargar el SDK si no está cargado
     if (!window.Spotify) {
-      const script = document.createElement('script');
-      script.src = 'https://sdk.scdn.co/spotify-player.js';
+      const script = document.createElement("script");
+      script.src = "https://sdk.scdn.co/spotify-player.js";
       script.async = true;
       document.body.appendChild(script);
     }
 
     window.onSpotifyWebPlaybackSDKReady = () => {
       const spotifyPlayer = new window.Spotify.Player({
-        name: 'Mi Reproductor Web',
+        name: "Mi Reproductor Web",
         getOAuthToken: (cb) => cb(accessToken),
-        volume: 0.5,
+        volume: 1,
       });
 
       // Event listeners
-      spotifyPlayer.addListener('ready', ({ device_id }) => {
-        console.log('🎵 Spotify Player Ready! Device ID:', device_id);
+      spotifyPlayer.addListener("ready", ({ device_id }) => {
+        console.log("🎵 Spotify Player Ready! Device ID:", device_id);
         setDeviceId(device_id);
         setIsReady(true);
       });
 
-      spotifyPlayer.addListener('not_ready', ({ device_id }) => {
-        console.log('❌ Spotify Player Not Ready! Device ID:', device_id);
+      spotifyPlayer.addListener("not_ready", ({ device_id }) => {
+        console.log("❌ Spotify Player Not Ready! Device ID:", device_id);
         setIsReady(false);
       });
 
-      spotifyPlayer.addListener('player_state_changed', (state) => {
+      spotifyPlayer.addListener("player_state_changed", (state) => {
         if (!state) return;
 
-        console.log('🎶 Player state changed:', state);
+        console.log("🎶 Player state changed:", state);
         setCurrentTrack(state.track_window.current_track);
         setIsPlaying(!state.paused);
         setPosition(state.position);
         setDuration(state.track_window.current_track?.duration_ms || 0);
       });
 
-      spotifyPlayer.addListener('initialization_error', ({ message }) => {
-        console.error('❌ Initialization Error:', message);
+      spotifyPlayer.addListener("initialization_error", ({ message }) => {
+        console.error("❌ Initialization Error:", message);
       });
 
-      spotifyPlayer.addListener('authentication_error', ({ message }) => {
-        console.error('❌ Authentication Error:', message);
+      spotifyPlayer.addListener("authentication_error", ({ message }) => {
+        console.error("❌ Authentication Error:", message);
       });
 
-      spotifyPlayer.addListener('account_error', ({ message }) => {
-        console.error('❌ Account Error:', message);
+      spotifyPlayer.addListener("account_error", ({ message }) => {
+        console.error("❌ Account Error:", message);
       });
 
-      spotifyPlayer.addListener('playback_error', ({ message }) => {
-        console.error('❌ Playback Error:', message);
+      spotifyPlayer.addListener("playback_error", ({ message }) => {
+        console.error("❌ Playback Error:", message);
       });
 
       // Conectar el player
